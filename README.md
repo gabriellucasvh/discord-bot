@@ -38,7 +38,7 @@ Este recurso foi criado com finalidade em auxiliar donos de servidores. A funcio
 - [Discord.js](https://discord.js.org/) `14.13.0` O discord.js é uma biblioteca para criar bots no Discord, permitindo interagir com canais, mensagens e eventos da API do Discord.
 - [chalk](https://www.npmjs.com/package/chalk) `4.1.0` Biblioteca do Node.js usada para estilizar texto no terminal.
 - [ms](https://www.npmjs.com/package/ms) `2.1.3` Converte valores de tempo em diferentes formatos.
-> [!INFO]
+> [!NOTE]
 > É recomendado manter essas versões caso queira apenas olhar o projeto. Se deseja adaptar para um versão mais atualizada, considere ler as documentações atuais do [Discord.js](https://discord.js.org/). Pacotes `chalk` e `ms` são opcionais.
 
 ## Como executar
