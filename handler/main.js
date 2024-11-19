@@ -3,9 +3,9 @@ const client = require('../index')
 
 const slashCommands = []
 
-fs.readdir('./ComandosAdm', (err, files) => {
+fs.readdir('./comandosAdm', (err, files) => {
     for(let comandos of files) {
-        files = require(`../ComandosAdm/${comandos}`)
+        files = require(`../comandosAdm/${comandos}`)
         if (!files.name) return;
         client.slashCommands.set(files.name, files)
 
