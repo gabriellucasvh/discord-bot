@@ -1,5 +1,3 @@
-
-
 # 🤖 Bot para Discord
 Este recurso foi criado com finalidade em auxiliar donos de servidores. A funcionalidade foi experimental(a fins de estudo), podendo ser aprimorada para melhor uso.
 ## Funcionalidades
@@ -37,9 +35,6 @@ Este recurso foi criado com finalidade em auxiliar donos de servidores. A funcio
 - [Node.js](https://nodejs.org/en)
 - [Discord.js](https://discord.js.org/) `14.13.0` O discord.js é uma biblioteca para criar bots no Discord, permitindo interagir com canais, mensagens e eventos da API do Discord.
 - [chalk](https://www.npmjs.com/package/chalk) `4.1.0` Biblioteca do Node.js usada para estilizar texto no terminal.
-- [ms](https://www.npmjs.com/package/ms) `2.1.3` Converte valores de tempo em diferentes formatos.
-> [!NOTE]
-> É recomendado manter essas versões caso queira apenas olhar o projeto. Se deseja adaptar para uma versão mais atualizada, considere ler as documentações atuais do [Discord.js](https://discord.js.org/). Pacote `chalk` é opcional.
 
 ## Como executar
 
