@@ -1,42 +1,48 @@
-const Discord = require('discord.js')
-const token = require('./bottoken').token
-const fs = require('fs')
+const { Client, IntentsBitField, InteractionType, Collection } = require('discord.js');
+const { token } = require('./bottoken');
+const fs = require('fs');
 
-const client = new Discord.Client({ 
+// Criação do cliente Discord com as intents necessárias
+const client = new Client({
     intents: [
-        Discord.IntentsBitField.Flags.Guilds,
-        Discord.IntentsBitField.Flags.GuildMembers,
-        Discord.IntentsBitField.Flags.MessageContent,
-        Discord.IntentsBitField.Flags.GuildMessages,
-        Discord.IntentsBitField.Flags.GuildModeration
-    ]
-})
+        IntentsBitField.Flags.Guilds,
+        IntentsBitField.Flags.GuildMembers,
+        IntentsBitField.Flags.MessageContent,
+        IntentsBitField.Flags.GuildMessages,
+        IntentsBitField.Flags.GuildModeration,
+    ],
+});
 
-client.on('interactionCreate', (interaction) => {
-    if (interaction.type !== Discord.InteractionType.ApplicationCommand) {
-        return
-    } else {
-        if (!client.slashCommands.get(interaction.commandName)) {
-            interaction.reply({ ephemeral: true, content: 'Houve um erro no comando selecinado.' })
-        } else {
-            client.slashCommands.get(interaction.commandName).run(client, interaction)
-        }
+// Evento para lidar com interações
+client.on('interactionCreate', async (interaction) => {
+    if (interaction.type !== InteractionType.ApplicationCommand) return;
+
+    const command = client.slashCommands.get(interaction.commandName);
+    if (!command) {
+        await interaction.reply({ ephemeral: true, content: 'Houve um erro no comando selecionado.' });
+        return;
     }
-})
 
-client.slashCommands = new Discord.Collection()
-module.exports = client
-
-fs.readdir('./events', (err, file) => {
-    for(let evento of file) {
-        require(`./events/${evento}`)
+    try {
+        await command.run(client, interaction);
+    } catch (error) {
+        console.error(`Erro ao executar o comando ${interaction.commandName}:`, error);
+        await interaction.reply({ ephemeral: true, content: 'Ocorreu um erro ao executar este comando.' });
     }
-})
+});
 
-fs.readdir('./handler', (err, file) => {
-    for(let main of file) {
-        require(`./handler/${main}`)
+// Configuração dos comandos slash
+client.slashCommands = new Collection();
+module.exports = client;
+
+
+// Leitura de handlers
+fs.readdir('./handler', (err, files) => {
+    if (err) return console.error('Erro ao carregar handlers:', err);
+    for (const file of files) {
+        require(`./handler/${file}`);
     }
-})
+});
 
-client.login(token)
+// Login do bot com o token em ./bottoken.js
+client.login(token);
