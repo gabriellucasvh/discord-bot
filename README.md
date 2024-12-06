@@ -29,7 +29,7 @@ Este recurso foi criado com finalidade em auxiliar donos de servidores. A funcio
 - Faz com que a função `lock` seja desativada, voltando a funcionar todos os canais de texto
 ```/unlock```
 
-## Tecnologias ultilizadas
+## Tecnologias utilizadas
 
 - [JavaScript](https://www.javascript.com/)
 - [Node.js](https://nodejs.org/en)
